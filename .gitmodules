@@ -1,0 +1,3 @@
+[submodule "eficazd"]
+	path = eficazd
+	url = https://github.com/ZakDeLondres/eficazd
