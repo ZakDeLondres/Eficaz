@@ -1,3 +1,6 @@
 [submodule "eficazd"]
 	path = eficazd
 	url = https://github.com/ZakDeLondres/eficazd
+[submodule "eficaz_launcher-darwin"]
+	path = eficaz_launcher-darwin
+	url = https://github.com/ZakDeLondres/eficaz_launcher-darwin
