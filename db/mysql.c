@@ -75,7 +75,7 @@ db_recv_row **db_recv_data(MYSQL **db, char *target) {
     MYSQL_ROW *row;
 
     while ((row == mysql_fetch_row(result))) {
-        for (int i = 0; i < MYSQL_FIELD_COUNT, i++) {
+        for (int i = 0; i < MYSQL_FIELD_COUNT; i++) {
             printf("RECV");
         }
     }
