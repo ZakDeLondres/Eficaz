@@ -23,7 +23,7 @@ struct libeficaz_context {
     eficaz_shot **shot;
 } typedef eficaz_context;
 
-eficaz_context ** create_context(eficaz_project *project, eficaz_sequence *sequence, eficaz_shot *shot);
-eficaz_context ** update_context(struct libeficaz_context **context);
+extern eficaz_context ** create_context(eficaz_project *project, eficaz_sequence *sequence, eficaz_shot *shot);
+extern eficaz_context ** update_context(struct libeficaz_context **context);
 
 #endif //LIBEFICAZ_CONTEXT_H
