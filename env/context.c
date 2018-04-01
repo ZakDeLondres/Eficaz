@@ -23,9 +23,9 @@ eficaz_context ** create_test_context() {
     project->name = malloc(sizeof(char) * strlen("TESTPROJECT"));
     strcpy(project->name, "TESTPROJECT");
 
-    context->project = &project;
-    context->sequence = &seq;
-    context->shot = &shot;
+    context->project = project;
+    context->sequence = seq;
+    context->shot = shot;
 
     return &context;
 }
