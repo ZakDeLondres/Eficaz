@@ -8,5 +8,6 @@
 #include <mysql/mysql.h>
 
 MYSQL ** db_connect(char *host, char *user, char *pass, char *dbName, int *port);
+int db_create_datasource(MYSQL **db, char *name);
 
 #endif //EFICAZ_MYSQL_H
