@@ -14,5 +14,3 @@ if(UNIX)
     target_link_libraries(eficaz PUBLIC /usr/local/Cellar/mariadb/10.2.11/lib)
 
 endif(UNIX)
-
-add_executable(eficaz_libTest main.c)
