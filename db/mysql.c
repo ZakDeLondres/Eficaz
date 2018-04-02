@@ -18,7 +18,7 @@ MYSQL ** db_connect(char *host, char *user, char *pass, char *dbName, int *port)
     return &db;
 }
 
-int db_create_datasource(MYSQL **db, char *name) {
+MYSQL db_create_datasource(int **db, char *name) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen(name) + strlen(" CREATE DATABASE;")));
     strcpy(query, "CREATE DATABASE ");
@@ -28,7 +28,7 @@ int db_create_datasource(MYSQL **db, char *name) {
     mysql_query(_db, query);
 }
 
-int db_create_datatable(MYSQL **db, char *name, db_table_column **columns) {
+MYSQL db_create_datatable(int **db, char *name, db_table_column **columns) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen("CREATE TABLE ()") + strlen(name)));
     strcpy(query, "CREATE TABLE ");
@@ -45,7 +45,7 @@ int db_create_datatable(MYSQL **db, char *name, db_table_column **columns) {
     mysql_query(_db, query);
 }
 
-int db_post_data(MYSQL **db, char *target, db_post_value **value) {
+MYSQL db_post_data(int **db, char *target, db_post_value **value) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen("INSERT INTO VALUES()") + strlen(target)));
     strcpy(query, "INSERT INTO ");
