@@ -21,7 +21,8 @@ struct __db_post_value {
 } typedef db_post_value;
 
 struct __db_recv_row {
-
+    char **column;
+    char **data;
 } typedef db_recv_row;
 
 MYSQL ** db_connect(char *host, char *user, char *pass, char *dbName, int *port);
