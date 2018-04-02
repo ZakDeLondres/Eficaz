@@ -7,8 +7,9 @@
 #include <memory.h>
 #include "project.h"
 
-eficaz_project ** create_projects_from_db(EFICAZ_DB_PROTOCOL **db) {
+eficaz_projects ** create_projects_from_db(int **db) {
     db_recv_rows *data = *db_recv_data(&db, "eficaz_projects");
+    eficaz_projects *_projects = malloc(sizeof(eficaz_projects));
     eficaz_project **projects = malloc(sizeof(eficaz_project *) * data->count);
 
     for (int i = 0; i < data->count; i++) {
@@ -20,5 +21,8 @@ eficaz_project ** create_projects_from_db(EFICAZ_DB_PROTOCOL **db) {
         strcpy(projects[i]->code, data->rows[i]->data[1]);
     }
 
-    return projects;
+    _projects->projects = projects;
+    _projects->count = data->count;
+
+    return _projects;
 }

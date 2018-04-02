@@ -17,6 +17,8 @@
 #ifndef LIBEFICAZ_CONTEXT_H
 #define LIBEFICAZ_CONTEXT_H
 
+#include "../db/def.h"
+
 struct libeficaz_context {
     eficaz_project **project;
     eficaz_sequence **sequence;
@@ -25,6 +27,6 @@ struct libeficaz_context {
 
 extern eficaz_context ** create_context(eficaz_project *project, eficaz_sequence *sequence, eficaz_shot *shot);
 extern eficaz_context ** update_context(struct libeficaz_context **context);
-extern eficaz_context ** create_test_context();
+eficaz_context ** create_contexts_from_db(int **db);
 
 #endif //LIBEFICAZ_CONTEXT_H

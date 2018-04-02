@@ -12,6 +12,11 @@ struct libeficaz_project {
     char **name;
 } typedef eficaz_project;
 
-eficaz_project ** create_projects_from_db(EFICAZ_DB_PROTOCOL **db);
+struct libeficaz_projects {
+    eficaz_project **projects;
+    int count;
+} typedef eficaz_projects;
+
+eficaz_projects ** create_projects_from_db(int **db);
 
 #endif //LIBEFICAZ_PROJECT_H

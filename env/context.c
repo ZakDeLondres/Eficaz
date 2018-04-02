@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <memory.h>
+#include <printf.h>
 #include "context.h"
 
 eficaz_context ** create_context(eficaz_project *project, eficaz_sequence *sequence, eficaz_shot *shot) {
@@ -24,4 +25,10 @@ eficaz_context ** create_context(eficaz_project *project, eficaz_sequence *seque
 
 eficaz_context ** update_context(eficaz_context **context) {
 
+}
+
+eficaz_context ** create_contexts_from_db(int **db) {
+    db_recv_row **data = db_recv_data(&db, "users");
+
+    printf(data[0]->data[1]);
 }
