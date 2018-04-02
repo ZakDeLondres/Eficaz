@@ -62,7 +62,7 @@ MYSQL db_post_data(int **db, char *target, db_post_value **value) {
     mysql_query(_db, query);
 }
 
-db_recv_row **db_recv_data(MYSQL **db, char *target) {
+db_recv_rows **db_recv_data(MYSQL **db, char *target) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen("SELECT * FROM ;.") + strlen(target)));
     strcpy(query, "SELECT * FROM ");
@@ -81,6 +81,8 @@ db_recv_row **db_recv_data(MYSQL **db, char *target) {
     if (result == NULL)
         fprintf(stderr, "%s\n", mysql_error(_db));
 
+    db_recv_rows *grouped_result = malloc(sizeof(db_recv_rows));
+//    db_recv_row **parsed_result = malloc(sizeof(db_recv_row *) * result->row_count);
     db_recv_row **parsed_result = malloc(sizeof(db_recv_row *) * result->row_count);
     int rowId = 0;
 
@@ -97,7 +99,10 @@ db_recv_row **db_recv_data(MYSQL **db, char *target) {
         rowId++;
     }
 
+    grouped_result->rows = parsed_result;
+    grouped_result->count = result->row_count;
+
     mysql_free_result(result);
 
-    return parsed_result;
+    return &grouped_result;
 }
