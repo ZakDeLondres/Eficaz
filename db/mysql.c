@@ -8,7 +8,7 @@
 #include <printf.h>
 #include "mysql.h"
 
-MYSQL ** db_connect(char *host, char *user, char *pass, char *dbName, int *port) {
+int ** db_connect(char *host, char *user, char *pass, char *dbName, int port) {
     MYSQL *db = mysql_init(NULL);
 
     if (mysql_real_connect(db, host, user, pass, dbName, port, NULL, NULL) == NULL) {
@@ -18,7 +18,7 @@ MYSQL ** db_connect(char *host, char *user, char *pass, char *dbName, int *port)
     return &db;
 }
 
-MYSQL db_create_datasource(int **db, char *name) {
+int db_create_datasource(int **db, char *name) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen(name) + strlen(" CREATE DATABASE;")));
     strcpy(query, "CREATE DATABASE ");
@@ -28,7 +28,7 @@ MYSQL db_create_datasource(int **db, char *name) {
     mysql_query(_db, query);
 }
 
-MYSQL db_create_datatable(int **db, char *name, db_table_column **columns) {
+int db_create_datatable(int **db, char *name, db_table_column **columns) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen("CREATE TABLE ()") + strlen(name)));
     strcpy(query, "CREATE TABLE ");
@@ -45,7 +45,7 @@ MYSQL db_create_datatable(int **db, char *name, db_table_column **columns) {
     mysql_query(_db, query);
 }
 
-MYSQL db_post_data(int **db, char *target, db_post_value **value) {
+int db_post_data(int **db, char *target, db_post_value **value) {
     MYSQL *_db = *db;
     char *query = malloc(sizeof(char) * (strlen("INSERT INTO VALUES()") + strlen(target)));
     strcpy(query, "INSERT INTO ");
@@ -62,8 +62,8 @@ MYSQL db_post_data(int **db, char *target, db_post_value **value) {
     mysql_query(_db, query);
 }
 
-db_recv_rows **db_recv_data(MYSQL **db, char *target) {
-    MYSQL *_db = *db;
+db_recv_rows **db_recv_data(int **db, char *target) {
+    MYSQL *_db = * ((MYSQL **)db);
     char *query = malloc(sizeof(char) * (strlen("SELECT * FROM ;.") + strlen(target)));
     strcpy(query, "SELECT * FROM ");
     strcat(query, _db->db);

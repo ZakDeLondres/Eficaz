@@ -5,7 +5,7 @@
 #ifndef EFICAZ_DEF_H
 #define EFICAZ_DEF_H
 
-#include "mysql.h"
+//#include "mysql.h"
 
 struct __db_table_column {
     char **name;
@@ -27,9 +27,10 @@ struct __db_recv_rows {
     int count;
 } typedef db_recv_rows;
 
-EFICAZ_DB_PROTOCOL db_create_datasource(int **db, char *name);
-EFICAZ_DB_PROTOCOL db_create_datatable(int **db, char *name, db_table_column **columns);
-EFICAZ_DB_PROTOCOL db_post_data(int **db, char *target, db_post_value **value);
-db_recv_rows **db_recv_data(EFICAZ_DB_PROTOCOL **db, char *target);
+extern int** db_connect(char *host, char *user, char *pass, char *dbName, int port);
+extern int db_create_datasource(int **db, char *name);
+extern int db_create_datatable(int **db, char *name, db_table_column **columns);
+extern int db_post_data(int **db, char *target, db_post_value **value);
+extern db_recv_rows **db_recv_data(int **db, char *target);
 
 #endif //EFICAZ_DEF_H
